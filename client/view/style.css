@@ -1,0 +1,26 @@
+.header
+{
+	padding: 20px;
+	text-align: left;
+	background: #2b575c;
+	color: bisque;
+}
+.title
+{
+	display: flex;
+
+}
+.title h1
+{
+	margin: 0;
+}
+.title img
+{
+	padding-top: 3px;
+	padding-right: 3px;
+}
+
+footer{
+	text-align: center;
+	padding: 3px;
+}

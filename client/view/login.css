@@ -1,0 +1,70 @@
+.header
+{
+	padding: 20px;
+	text-align: center;
+	color: bisque;
+}
+
+.header h1
+{
+	font-size: 100px;
+	margin: 0;
+}
+.header img
+{
+	padding-bottom: 0;
+}
+
+.login
+{
+	padding: 20px;
+	text-align: center;
+	color: bisque;
+}
+
+.login input
+{
+	margin-left: 5px;
+}
+.login h4
+{
+	margin-bottom: 4px;
+	margin-top: 10px;
+}
+
+.buttons 
+{
+	text-align: center;
+
+}
+
+.buttons button {
+	width: 75px;
+	height: 17px;
+	transition-duration: 0.1s;
+	border: none;
+	text-align: center;
+  }
+  
+ .buttons button:hover {
+	background-color: bisque; /* Green */
+  }
+  .buttons button:first-child {
+	margin-right: 10px;
+  }
+  
+footer{
+	text-align: center;
+	padding: 3px;
+	padding-top: 20px;
+}
+  footer button
+  {
+	background-color: #2b575c;
+	border: 0;
+	border-radius: 1000px;
+  }
+
+  footer button:hover{
+	background-color: #387c84;
+  }
