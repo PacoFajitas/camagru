@@ -14,7 +14,7 @@
 </style>
 <body>
 <div class="header">
-	<img src="../srcs/logo.jpg" width="149.4" height="106.2" alt="Invaders logo">
+	<img src="./srcs/logo.jpg" width="149.4" height="106.2" alt="Invaders logo">
 	<h1>Camagru</h1>
 	<h2>The geeky 42 instagram.</p>
 </div>
@@ -28,9 +28,10 @@
 		<label for="inputPasswordRep" title="Password">Repeat password:</label><br>
 		<input type="password" id="inputPasswordRep" placeholder="Password"><br>
 </form>
+<p id="registerMessage" style="color:red; display:none;"></p>
 <div class="buttons">
 	<button type="button" title="login" id="butLogin">Login</button>
-	<button type="button" title="Sign up" id="butSignup">Sign up</button>
+	<button type="button" title="Sign up" id="butSignup" disabled>Sign up</button>
 </div>
 </body>
 </html>

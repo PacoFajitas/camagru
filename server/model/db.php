@@ -1,5 +1,5 @@
 <?php
-// model/database.php
+// model/db.php
 
 // Ruta al archivo de la base de datos SQLite
 $dbFile = __DIR__ . '/../data/app.db';
@@ -8,12 +8,12 @@ $dbFile = __DIR__ . '/../data/app.db';
 $db = new SQLite3($dbFile);
 $db->exec('PRAGMA foreign_keys = ON;');
 // Crear tabla de usuarios si no existe
-$createTableQuery = "
-CREATE TABLE IF NOT EXISTS user (
+$createTableQuery = "CREATE TABLE IF NOT EXISTS user (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user TEXT NOT NULL UNIQUE,
     email TEXT NOT NULL UNIQUE,
-    password TEXT NOT NULL
+    password TEXT NOT NULL,
+	authenticated CHECK(authenticated IN(0, 1))
 );";
 if (!$db->exec($createTableQuery)) {
 	die("Error creando la tabla: " . $db->lastErrorMsg());
@@ -41,7 +41,6 @@ if (!$db->exec($createTableQuery)) {
 	die("Error creando la tabla: " . $db->lastErrorMsg());
 }
 
-echo "Base de datos y tablas 'user', 'posts' y 'comments' creadas correctamente.\n";
 
 
 ?>

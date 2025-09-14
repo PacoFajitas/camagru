@@ -1,7 +1,7 @@
 COMPOSE            := docker compose
 COMPOSE_FILE       := docker-compose.yml
-SERVICES           := nginx server client
-VOLUMES            := $(shell docker volume ls -q | grep transcendence_)
+SERVICES           := nginx server
+VOLUMES            := $(shell docker volume ls -q | grep camagru)
 
 all: up
 
@@ -31,8 +31,8 @@ configure-rootless:
 
 up: configure-rootless generate-cert
 	@echo "🚀 Levantando todos los servicios..."
-	@mkdir -p ./server/model/data
-	@chmod -R 777 ./server/model/data
+	@mkdir -p ./server/data
+	@chmod -R 777 ./server/data
 	@docker network create camagru_net
 	@$(COMPOSE) up -d
 
@@ -54,7 +54,8 @@ clean:
 
 fclean: down clean
 	@echo "🔥 Borrando todas las imágenes de Docker (esto es destructivo)..."
-	@rm -rf ./server/model/data
+	@rm -rf ./server/data
+	@docker network rm camagru_net
 	@docker rmi -f $$(docker images -q) 2>/dev/null || true
 
 re: fclean up

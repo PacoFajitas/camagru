@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: nginx:alpine
+    image: nginx:stable
     container_name: nginx
     ports:
       - "${NGINX_HTTP_PORT}:80"
@@ -8,17 +8,11 @@ services:
     volumes:
       - ./gateway/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./gateway/certbot/conf:/etc/letsencrypt
+      - ./client:/usr/share/nginx/html:ro
     depends_on:
-      - client
       - server
     networks:
       - camagru_net
-  client:
-    build: ./client
-    container_name: client
-    networks:
-      - camagru_net
-  
   server:
     build: ./server
     container_name: server
@@ -27,17 +21,14 @@ services:
     networks:
       - camagru_net
     volumes:
-      - ./server/model/data:/var/www/html/model
+      - server_data:/var/www/html/data
+    
+    
+volumes:
+  server_data:
+
 
 networks:
   camagru_net:
     external: true
     name: camagru_net
-
-volumes:
-  server_data:
-    driver: local
-    driver_opts:
-      type: none
-      device: ./server
-      o: bind

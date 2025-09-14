@@ -1,6 +1,6 @@
 # Usamos PHP con SQLite y Apache
 FROM php:8.2-apache
-
+#FROM nexus.42barcelona.com:5000/Lo que sea
 # Instala SQLite y extensiones necesarias
 RUN apt-get update && apt-get install -y \
     sqlite3 \
@@ -16,7 +16,7 @@ WORKDIR /var/www/html
 # Copia el código de tu proyecto
 COPY ./controller ./controller
 COPY ./model ./model
-
+COPY ./.htaccess ./
 # Opcional: crea carpeta para DB si la quieres persistente
 RUN mkdir -p /var/www/html/data
 
@@ -26,5 +26,7 @@ RUN chown -R www-data:www-data /var/www/html
 # Exponer puerto 80 para Apache
 EXPOSE 80
 
+
 # Comando por defecto
-CMD ["apache2-foreground"]
+CMD apache2-foreground
+
