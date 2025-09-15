@@ -22,10 +22,11 @@ return [
 					echo json_encode(["error" => "Wrong password"]);
 					break ;
 				}
-				if($result["verified"] == 0)
+				if($result["authenticated"] == 0)
 				{
 					http_response_code(401);
-					echo json_encode(["error" => "User not verified"]);
+					echo json_encode(["error" => "User not authenticated"]);
+					break ;
 				}
 				http_response_code(200);
 				echo json_encode($result["id"]);

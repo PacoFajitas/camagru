@@ -13,7 +13,8 @@ $createTableQuery = "CREATE TABLE IF NOT EXISTS user (
     user TEXT NOT NULL UNIQUE,
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
-	authenticated CHECK(authenticated IN(0, 1))
+	authenticated CHECK(authenticated IN(0, 1)),
+	token TEXT
 );";
 if (!$db->exec($createTableQuery)) {
 	die("Error creando la tabla: " . $db->lastErrorMsg());

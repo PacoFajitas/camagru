@@ -1,8 +1,19 @@
 <?php
-// index.php
 ini_set('log_errors', 1);
 ini_set('error_log', 'php://stderr'); // enviar logs a STDERR
 ini_set('display_errors', 0); 
+require_once __DIR__ . '/../vendor/phpmailer/src/PHPMailer.php';
+require_once __DIR__ . '/../vendor/phpmailer/src/SMTP.php';
+require_once __DIR__ . '/../vendor/phpmailer/src/Exception.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Create an instance; passing `true` enables exceptions
+$mail = new PHPMailer(true);
+
+// index.php
+header('Content-Type: application/json; charset=utf-8');
 
 
 // Incluir la conexión / esquemas
@@ -14,7 +25,8 @@ $routes = [];
 // Cada archivo devuelve un array de rutas
 $routes = array_merge(
     $routes,
-    require __DIR__ .'/routes/login.php'
+    require __DIR__ .'/routes/login.php',
+    require __DIR__ .'/routes/register.php'
     // require 'routes/other.php', etc.
 );
 
@@ -32,7 +44,10 @@ error_log("Login attempt for user: $path");
 
 // Verificar si la ruta existe y ejecutar su función
 if (isset($routes[$path])) {
-    $routes[$path]($db, $method); // Pasamos la conexión a SQLite3
+    if($routes["/register"])
+        $routes[$path]($db, $method, $mail); // Pasamos la conexión a SQLite3
+    else
+        $routes[$path]($db, $method); // Pasamos la conexión a SQLite3
 } else {
     http_response_code(404);
     echo "Ruta no encontrada";

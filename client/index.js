@@ -1,3 +1,3 @@
 window.onload = () =>{
-	location.href = "register.html"
+	// location.href = "register.html"
 }

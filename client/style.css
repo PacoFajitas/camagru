@@ -14,12 +14,32 @@
 {
 	margin: 0;
 }
-.title img
+.title button img
 {
 	padding-top: 3px;
 	padding-right: 3px;
+	padding-right: 0;
+	padding: 0;
+	background:  #2b575c;
+	
+}
+.title button
+{
+	background:  #2b575c;
+	border: none;
+	padding-right: 0;
+	padding: 0;
+	
+}
+.title button:hover
+{
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
+.title button:active {
+  box-shadow: 0 5px #2b575c;
+  transform: translateY(4px);
+}
 footer{
 	text-align: center;
 	padding: 3px;
