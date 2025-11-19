@@ -26,7 +26,8 @@ $routes = [];
 $routes = array_merge(
     $routes,
     require __DIR__ .'/routes/login.php',
-    require __DIR__ .'/routes/register.php'
+    require __DIR__ .'/routes/register.php',
+    require __DIR__ . '/routes/verify.php'
     // require 'routes/other.php', etc.
 );
 

@@ -32,7 +32,7 @@ function sendSmtps($mail, $email, $token, $user)
 		$mail->addAddress($email);     // Add recipient
 	
 		// Contenido del correo
-		$verifyLink = "http://localhost:8443/server/verify?token=" . urlencode($token);
+		$verifyLink = "https://localhost:8443/server/verify?token=" . urlencode($token);
 	
 		$mail->isHTML(true);                                  // Set email format to HTML
 		$mail->Subject = 'Verifica tu cuenta';
@@ -63,6 +63,11 @@ return[
 				$user = $input["user"] ?? null;
 				$email = $input["email"] ?? null;
 				$pass = $input["pass"] ?? null;
+				if(is_null($user) ||is_null($pass) ||is_null($email))
+				{
+					http_response_code(400);
+					echo json_encode(["error" => "Empty fields"]);
+				}
 				$token = bin2hex(random_bytes(16));
 				if(!filter_var($email, FILTER_VALIDATE_EMAIL))
 				{
